@@ -15,7 +15,6 @@ runs:
     - name: Create directory if not exists
       if: ${{ inputs.projectDirectory != '' }}
       run: mkdir -p ${{ inputs.projectDirectory }}
-      shell: bash
     - name: Create minimal project folders and ProjectVersion.txt
       working-directory: ${{ inputs.projectDirectory }}
       run: |
@@ -25,7 +24,6 @@ runs:
         echo "m_EditorVersion: ${{ inputs.unityVersion }}" > ProjectSettings/ProjectVersion.txt
       shell: bash
     - name: Create manifest.json
-      working-directory: 
       uses: jsdaniell/create-json@v1.2.3
       with: 
         name: "${{ inputs.projectDirectory }}/Packages/manifest.json"
