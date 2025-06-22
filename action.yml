@@ -3,7 +3,7 @@ name: 'Create Unity Project'
 inputs:
   unityVersion:
     required: true
-  projectDirectory:
+  projectPath:
     required: false
     default: ''
   manifest:
@@ -13,11 +13,11 @@ runs:
   using: 'composite'
   steps:
     - name: Create directory if not exists
-      if: ${{ inputs.projectDirectory != '' }}
-      run: mkdir -p ${{ inputs.projectDirectory }}
+      if: ${{ inputs.projectPath != '' }}
+      run: mkdir -p ${{ inputs.projectPath }}
       shell: bash
     - name: Create minimal project folders and ProjectVersion.txt
-      working-directory: ${{ inputs.projectDirectory }}
+      working-directory: ${{ inputs.projectPath }}
       run: |
         mkdir Assets
         mkdir Packages
@@ -27,5 +27,5 @@ runs:
     - name: Create manifest.json
       uses: jsdaniell/create-json@v1.2.3
       with: 
-        name: "${{ inputs.projectDirectory }}/Packages/manifest.json"
+        name: "${{ inputs.projectPath }}/Packages/manifest.json"
         json: ${{ inputs.manifest }}
