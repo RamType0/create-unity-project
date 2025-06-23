@@ -6,7 +6,7 @@ inputs:
   projectPath:
     required: false
     default: ''
-  manifest:
+  packageManifest:
     required: false
     default: '{}'
 runs:
@@ -28,4 +28,4 @@ runs:
       uses: jsdaniell/create-json@v1.2.3
       with: 
         name: "${{ inputs.projectPath }}/Packages/manifest.json"
-        json: ${{ inputs.manifest }}
+        json: ${{ inputs.packageManifest }}
